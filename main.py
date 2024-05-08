@@ -71,7 +71,7 @@ def main():
         if userInput == "help" or userInput ==  "Display help":
             display_menu()
         elif userInput == "exit" or userInput == "Exit the application":
-            print("Exit the Application")
+            print("Exit the Application Hamza")
             exit()
 
 #write display 2 options
