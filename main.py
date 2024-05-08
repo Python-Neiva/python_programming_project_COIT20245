@@ -61,18 +61,18 @@ display_menu()
 o If the user enters exit, then the system should exit.
 
 '''
-def main():   
+def main():
     display_menu()
 
-    # This convert the user input to lower case
-    userInput = input("Enter the option you want to choose: ").strip().lower() 
-    print(f"The option that you have chosen is, {userInput}!")
-    
-    if userInput == "help" or userInput ==  "Display help":
-        display_menu()
-    elif userInput == "Exit" or userInput == "Exit the application":
-        print("Exit the Application")
-        exit()
+    while True:
+        userInput = input("Wildlife>").strip().lower() 
+        print(f"The option that you have chosen is, {userInput}!")
+        
+        if userInput == "help" or userInput ==  "Display help":
+            display_menu()
+        elif userInput == "Exit" or userInput == "Exit the application":
+            print("Exit the Application")
+            exit()
 
 #write display 2 options
 # pass
