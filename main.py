@@ -13,10 +13,11 @@ def display_menu():
     print(f"{leftAlignment : <20}{rightAlignment : >30} ")
 
     rightAlignment = "wildlife> exit"
-    leftAlignment = "2.Exit the application "
+    leftAlignment = "2. Exit the application "
     print(f"{leftAlignment : <20}{ rightAlignment : >27}")
 
-
+    leftAlignment = "3. Display animal species in a city"
+    rightAlignment = "wildlife> species Cairns"
 
 #write function for option exit applicatoin
 
