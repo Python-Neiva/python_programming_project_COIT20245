@@ -50,13 +50,12 @@ def display_menu():
 
 
 def choose_option(userInput):
-    if userInput == "1" or userInput == "help" or userInput ==  "Display help":
+    if userInput == "help" or userInput ==  "Display help":
         display_menu()
-    elif userInput == "2" or userInput == "Exit" or userInput == "Exit the application":
+    elif userInput == "Exit" or userInput == "Exit the application":
         print("Exit the Application")
         exit()
-    print("Consider one of the given options bellow")
-    display_menu
+
 
 '''
 Task 2 User Input
