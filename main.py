@@ -70,7 +70,7 @@ def main():
         
         if userInput == "help" or userInput ==  "Display help":
             display_menu()
-        elif userInput == "Exit" or userInput == "Exit the application":
+        elif userInput == "exit" or userInput == "Exit the application":
             print("Exit the Application")
             exit()
 
