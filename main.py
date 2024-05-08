@@ -11,12 +11,13 @@ def display_menu():
     rightAlignment = "wildlife> help"
     leftAlignment = "1.Display  help" 
     print(f"{leftAlignment : <20}{rightAlignment : >30} ")
-    rightAlignment = "wildlife> exit"
-    leftAlignment = "2.Exit the application "
 
+    rightAlignment = "wildlife> exit"
+    leftAlignment = "2. Exit the application "
     print(f"{leftAlignment : <20}{ rightAlignment : >27}")
 
-
+    leftAlignment = "3. Display animal species in a city"
+    rightAlignment = "wildlife> species Cairns"
 
 #write function for option exit applicatoin
 
@@ -100,7 +101,11 @@ if __name__ == "__main__":
 
 
 
+def search_species(city):
+    pass
 
+def display_species(species_list):
+    pass
 
 
 
