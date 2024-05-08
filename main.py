@@ -49,15 +49,6 @@ def display_menu():
 
 
 
-def choose_option(userInput):
-    if userInput == "help" or userInput ==  "Display help":
-        display_menu()
-    elif userInput == "Exit" or userInput == "Exit the application":
-        print("Exit the Application")
-    else 
-        print("Invalid Input")
-        exit()
-
 
 '''
 Task 2 User Input
