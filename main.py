@@ -8,19 +8,21 @@ def display_menu():
     print("Help")
     print("====")
     print("The following commands are recognized:")
+    
+    # Option 1
     rightAlignment = "wildlife> help"
-    leftAlignment = "1.Display  help" 
+    leftAlignment = "1. Display help" 
     print(f"{leftAlignment : <20}{rightAlignment : >30} ")
 
+    # Option 2
     rightAlignment = "wildlife> exit"
     leftAlignment = "2. Exit the application "
     print(f"{leftAlignment : <20}{ rightAlignment : >27}")
 
+    # Option 3
     leftAlignment = "3. Display animal species in a city"
     rightAlignment = "wildlife> species Cairns"
     print(f"{leftAlignment : <20}{ rightAlignment : >27}")
-
-#write function for option exit applicatoin
 
 
 
