@@ -67,7 +67,12 @@ def main():
     # This convert the user input to lower case
     userInput = input("Enter the option you want to choose: ").strip().lower() 
     print(f"The option that you have chosen is, {userInput}!")
-    choose_option(userInput)
+    
+    if userInput == "help" or userInput ==  "Display help":
+        display_menu()
+    elif userInput == "Exit" or userInput == "Exit the application":
+        print("Exit the Application")
+        exit()
 
 #write display 2 options
 # pass
