@@ -18,6 +18,7 @@ def display_menu():
 
     leftAlignment = "3. Display animal species in a city"
     rightAlignment = "wildlife> species Cairns"
+    print(f"{leftAlignment : <20}{ rightAlignment : >27}")
 
 #write function for option exit applicatoin
 
