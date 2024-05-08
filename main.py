@@ -53,7 +53,10 @@ def choose_option(userInput):
     if userInput == 1 or userInput == "help" or userInput ==  "Display help":
         display_menu()
     elif userInput == 2 or userInput == "Exit" or userInput == "Exit the application":
+        
         exit()
+
+    display_menu
 
 '''
 Task 2 User Input
@@ -69,7 +72,8 @@ o If the user enters exit, then the system should exit.
 def main():   
     display_menu()
 
-    userInput = input("Enter the option you want to choose: ")
+    # This convert the user input to lower case
+    userInput = input("Enter the option you want to choose: ").strip().lower() 
     print(f"The option that you have chosen is, {userInput}!")
     choose_option(userInput)
 
