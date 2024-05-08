@@ -54,6 +54,8 @@ def choose_option(userInput):
         display_menu()
     elif userInput == "Exit" or userInput == "Exit the application":
         print("Exit the Application")
+    else 
+        print("Invalid Input")
         exit()
 
 
