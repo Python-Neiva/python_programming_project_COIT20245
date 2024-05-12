@@ -21,8 +21,12 @@ def display_menu():
 
     # Option 3
     leftAlignment = "3. Display animal species in a city"
-    rightAlignment = "wildlife> species Cairns"
+    rightAlignment = "wildlife> species <city>"
     print(f"{leftAlignment : <20}{ rightAlignment : >27}")
+
+    # Option 4
+    leftAlignment = "4. Display animal sightings in a city "
+    rightAlignment = "wildlife> sightings <city> <taxID> "
 
 
 
@@ -142,6 +146,50 @@ def main():
 
 main()
 
+#Task 4
+ search_sightings(taxonid,city):
+    return [{"properties": {"StartDate": "1999-11-15", "LocalityDetails": "Tinaroo"}}]
+
+def display_sightings(sightings):
+    """
+    Display a list of animal sightings to the screen.
+    
+    Args:
+        sightings (list): A list of animal sightings.
+    """
+    print("Animal sightings:")
+    for sighted_animal in sightings:
+        start_date = sighted_animal["properties"]["StartDate"]
+        locality_details = sighted_animal["properties"]["LocalityDetails"]
+        print(f"Sighted on: {start_date} | Location: {locality_details}")
+
+
+def main():
+    display_menu()
+
+    while True:
+        userInput = input("Wildlife>").strip().lower() 
+        print(f"The option that you have chosen is, {userInput}!")
+        
+        if userInput == "help" or userInput ==  "Display help":
+            display_menu()
+        elif userInput == "exit" or userInput == "Exit the application":
+            print("Exit the Application")
+            breask
+        elif userInput.startswith("species"):
+            city = command.split()[1]
+            species_list = search_species(city)
+            display_species(species_list)
+        elif userInput.startswith("sightings "):
+            city_input = userInput.split()
+            city = city_input[1]
+            taxonid = int(city_input[2])
+            sightings = search_sightings(taxonid, city)
+            display_sightings(sightings)
+         else:
+            print("Invalid command. Please try again or seek help.")
+
+main()
 
 
 
