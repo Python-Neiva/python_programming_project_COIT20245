@@ -105,10 +105,42 @@ if __name__ == "__main__":
 
 
 def search_species(city):
-    pass
+    return [
+        {"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil"}},
+        {"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}
+    ]
+
 
 def display_species(species_list):
-    pass
+    if not species_list:
+        print("Species not found.")
+    else:
+        for species in species_list:
+            Acceptedname=species["Species"]["AcceptedCommonName"]
+            Status=species["Species"]["PestStatus"]
+            print(f"Species: {Acceptedname}")
+            print(f"Pest Status: {Status}")
+
+def main():
+    display_menu()
+
+    while True:
+        userInput = input("Wildlife>").strip().lower() 
+        print(f"The option that you have chosen is, {userInput}!")
+        
+        if userInput == "help" or userInput ==  "Display help":
+            display_menu()
+        elif userInput == "exit" or userInput == "Exit the application":
+            print("Exit the Application")
+            breask
+        elif userInput.startswith("species"):
+            city = command.split()[1]
+            species_list = search_species(city)
+            display_species(species_list)
+         else:
+            print("Invalid command. Please try again or seek help.")
+
+main()
 
 
 
