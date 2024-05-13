@@ -108,88 +108,43 @@ if __name__ == "__main__":
 
 
 
+def display_menu():
+    print("Menu:")
+    print("1. Display animal species in a city")
+    print("2. Other options...")
+
 def search_species(city):
+    # Stub implementation, to be replaced with actual logic later
+    # For now, return a predefined list of species for any city
     return [
         {"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil"}},
         {"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}
     ]
 
-
 def display_species(species_list):
-    if not species_list:
-        print("Species not found.")
-    else:
-        for species in species_list:
-            Acceptedname=species["Species"]["AcceptedCommonName"]
-            Status=species["Species"]["PestStatus"]
-            print(f"Species: {Acceptedname}")
-            print(f"Pest Status: {Status}")
+    print("Species found:")
+    for species in species_list:
+        print(f"Common Name: {species['Species']['AcceptedCommonName']}, Pest Status: {species['Species']['PestStatus']}")
 
 def main():
     display_menu()
+    command = input("Enter command: ")
 
-    while True:
-        userInput = input("Wildlife>").strip().lower() 
-        print(f"The option that you have chosen is, {userInput}!")
-        
-        if userInput == "help" or userInput ==  "Display help":
-            display_menu()
-        elif userInput == "exit" or userInput == "Exit the application":
-            print("Exit the Application")
-            breask
-        elif userInput.startswith("species"):
-            city = command.split()[1]
+    if command.startswith("species"):
+        # Extract the city from the command
+        parts = command.split()
+        if len(parts) > 1:
+            city = parts[1]
             species_list = search_species(city)
             display_species(species_list)
-         else:
-            print("Invalid command. Please try again or seek help.")
+        else:
+            print("Please provide a city after 'species'.")
 
-main()
+if __name__ == "__main__":
+    main()
+
 
 #Task 4
- search_sightings(taxonid,city):
-    return [{"properties": {"StartDate": "1999-11-15", "LocalityDetails": "Tinaroo"}}]
-
-def display_sightings(sightings):
-    """
-    Display a list of animal sightings to the screen.
-    
-    Args:
-        sightings (list): A list of animal sightings.
-    """
-    print("Animal sightings:")
-    for sighted_animal in sightings:
-        start_date = sighted_animal["properties"]["StartDate"]
-        locality_details = sighted_animal["properties"]["LocalityDetails"]
-        print(f"Sighted on: {start_date} | Location: {locality_details}")
-
-
-def main():
-    display_menu()
-
-    while True:
-        userInput = input("Wildlife>").strip().lower() 
-        print(f"The option that you have chosen is, {userInput}!")
-        
-        if userInput == "help" or userInput ==  "Display help":
-            display_menu()
-        elif userInput == "exit" or userInput == "Exit the application":
-            print("Exit the Application")
-            breask
-        elif userInput.startswith("species"):
-            city = command.split()[1]
-            species_list = search_species(city)
-            display_species(species_list)
-        elif userInput.startswith("sightings "):
-            city_input = userInput.split()
-            city = city_input[1]
-            taxonid = int(city_input[2])
-            sightings = search_sightings(taxonid, city)
-            display_sightings(sightings)
-         else:
-            print("Invalid command. Please try again or seek help.")
-
-main()
 
 
 
