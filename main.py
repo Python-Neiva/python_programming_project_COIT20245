@@ -147,6 +147,62 @@ if __name__ == "__main__":
 #Task 4
 
 
+def display_menu():
+    print("Menu:")
+    print("1. Display animal species in a city")
+    print("2. Display animal sightings in a city")
+    print("3. Other options...")
+
+def search_species(city):
+    # Stub implementation, to be replaced with actual logic later
+    # For now, return a predefined list of species for any city
+    return [
+        {"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil", "TaxonID": 1039}},
+        {"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous", "TaxonID": 1234}}
+    ]
+
+def search_sightings(taxonid, city):
+    # Stub implementation, to be replaced with actual logic later
+    # For now, return a predefined list of sightings for any species and city
+    return [
+        {"properties": {"StartDate": "1999-11-15", "LocalityDetails": "Tinaroo"}}
+    ]
+
+def display_species(species_list):
+    print("Species found:")
+    for species in species_list:
+        print(f"Common Name: {species['Species']['AcceptedCommonName']}, TaxonID: {species['Species']['TaxonID']}, Pest Status: {species['Species']['PestStatus']}")
+
+def display_sightings(sightings):
+    print("Sightings found:")
+    for sighting in sightings:
+        print(f"Start Date: {sighting['properties']['StartDate']}, Locality: {sighting['properties']['LocalityDetails']}")
+
+def main():
+    display_menu()
+    command = input("Enter command: ")
+
+    if command.startswith("species"):
+        # Extract the city from the command
+        parts = command.split()
+        if len(parts) > 1:
+            city = parts[1]
+            species_list = search_species(city)
+            display_species(species_list)
+        else:
+            print("Please provide a city after 'species'.")
+    elif command.startswith("sightings"):
+        # Extract species and city from the command
+        parts = command.split()
+        if len(parts) > 2:
+            species, city = parts[1], parts[2]
+            sightings = search_sightings(species, city)
+            display_sightings(sightings)
+        else:
+            print("Please provide both species and city after 'sightings'.")
+
+if __name__ == "__main__":
+    main()
 
 
 
