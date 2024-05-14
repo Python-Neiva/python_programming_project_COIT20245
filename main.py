@@ -3,7 +3,8 @@
 
 def display_menu():
     """
-    Displays a menu with numbered options.
+    This function displays a menu with numbered options.
+
     """
     print("Help")
     print("====")
@@ -107,7 +108,7 @@ if __name__ == "__main__":
 #function that:...
 
 
-
+# TODO delete this function, since it has already been utilized before.
 def display_menu():
     print("Menu:")
     print("1. Display animal species in a city")
@@ -161,7 +162,7 @@ def searchSpecies(city):
         {"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous", "TaxonID": 1234}}
     ]
 
-def search_sightings(taxonid, city):
+def searchSightings(taxonid, city):
     # Stub implementation, to be replaced with actual logic later
     # For now, return a predefined list of sightings for any species and city
     return [
@@ -173,7 +174,7 @@ def display_species(speciesList):
     for species in speciesList:
         print(f"Common Name: {species['Species']['AcceptedCommonName']}, TaxonID: {species['Species']['TaxonID']}, Pest Status: {species['Species']['PestStatus']}")
 
-def display_sightings(sightings):
+def displaySightings(sightings):
     print("Sightings found:")
     for sighting in sightings:
         print(f"Start Date: {sighting['properties']['StartDate']}, Locality: {sighting['properties']['LocalityDetails']}")
@@ -196,8 +197,8 @@ def main():
         parts = command.split()
         if len(parts) > 2:
             species, city = parts[1], parts[2]
-            sightings = search_sightings(species, city)
-            display_sightings(sightings)
+            sightings = searchSightings(species, city)
+            displaySightings(sightings)
         else:
             print("Please provide both species and city after 'sightings'.")
 
