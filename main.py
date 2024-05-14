@@ -180,7 +180,7 @@ def displaySightings(sightings):
     for sighting in sightings:
         print(f"Start Date: {sighting['properties']['StartDate']}, Locality: {sighting['properties']['LocalityDetails']}")
 
-def main():
+def mainTask4():
     display_menu()
     command = input("Enter command: ")
 
