@@ -113,7 +113,7 @@ def display_menu():
     print("1. Display animal species in a city")
     print("2. Other options...")
 
-def search_species(city):
+def searchSpecies(city):
     # Stub implementation, to be replaced with actual logic later
     # For now, return a predefined list of species for any city
     return [
@@ -121,9 +121,9 @@ def search_species(city):
         {"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}
     ]
 
-def display_species(species_list):
+def display_species(speciesList):
     print("Species found:")
-    for species in species_list:
+    for species in speciesList:
         print(f"Common Name: {species['Species']['AcceptedCommonName']}, Pest Status: {species['Species']['PestStatus']}")
 
 def main():
@@ -135,8 +135,8 @@ def main():
         parts = command.split()
         if len(parts) > 1:
             city = parts[1]
-            species_list = search_species(city)
-            display_species(species_list)
+            speciesList = searchSpecies(city)
+            display_species(speciesList)
         else:
             print("Please provide a city after 'species'.")
 
@@ -153,7 +153,7 @@ def display_menu():
     print("2. Display animal sightings in a city")
     print("3. Other options...")
 
-def search_species(city):
+def searchSpecies(city):
     # Stub implementation, to be replaced with actual logic later
     # For now, return a predefined list of species for any city
     return [
@@ -168,9 +168,9 @@ def search_sightings(taxonid, city):
         {"properties": {"StartDate": "1999-11-15", "LocalityDetails": "Tinaroo"}}
     ]
 
-def display_species(species_list):
+def display_species(speciesList):
     print("Species found:")
-    for species in species_list:
+    for species in speciesList:
         print(f"Common Name: {species['Species']['AcceptedCommonName']}, TaxonID: {species['Species']['TaxonID']}, Pest Status: {species['Species']['PestStatus']}")
 
 def display_sightings(sightings):
@@ -187,8 +187,8 @@ def main():
         parts = command.split()
         if len(parts) > 1:
             city = parts[1]
-            species_list = search_species(city)
-            display_species(species_list)
+            speciesList = searchSpecies(city)
+            display_species(speciesList)
         else:
             print("Please provide a city after 'species'.")
     elif command.startswith("sightings"):
