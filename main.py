@@ -27,8 +27,14 @@ def display_menu():
 
     # Option 4
     leftAlignment = "4. Display animal sightings in a city "
-    rightAlignment = "wildlife> sightings <city> <taxID> "
+    rightAlignment = "wildlife> sightings <city> <tax ID> "
     print(f"{leftAlignment : <20}{ rightAlignment : >27}")
+
+    # Option 5
+    leftAlignment = "5. Display venonmous species wildlife"
+    rightAlignment = "wildlife> species Cairns venomous <city> <pest status> "
+    print(f"{leftAlignment : <20}{ rightAlignment : >27}")
+
 
 
 
