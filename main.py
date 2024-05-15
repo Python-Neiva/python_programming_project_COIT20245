@@ -1,3 +1,5 @@
+from nomination import gps_coordinate
+
 #Task 1
 #create menu
 
@@ -13,27 +15,27 @@ def display_menu():
     # Option 1
     rightAlignment = "wildlife> help"
     leftAlignment = "1. Display help" 
-    print(f"{leftAlignment : <20}{rightAlignment : >30} ")
+    print(f"{leftAlignment : <35}{rightAlignment : >55} ")
 
     # Option 2
     rightAlignment = "wildlife> exit"
     leftAlignment = "2. Exit the application "
-    print(f"{leftAlignment : <20}{ rightAlignment : >27}")
+    print(f"{leftAlignment : <35}{ rightAlignment : >55}")
 
     # Option 3
     leftAlignment = "3. Display animal species in a city"
     rightAlignment = "wildlife> species <city>"
-    print(f"{leftAlignment : <20}{ rightAlignment : >27}")
+    print(f"{leftAlignment : <35}{ rightAlignment : >55}")
 
     # Option 4
-    leftAlignment = "4. Display animal sightings in a city "
-    rightAlignment = "wildlife> sightings <city> <tax ID> "
-    print(f"{leftAlignment : <20}{ rightAlignment : >27}")
+    leftAlignment = "4. Display animal sightings in a city"
+    rightAlignment = "wildlife> sightings <city> <tax ID>"
+    print(f"{leftAlignment : <35}{ rightAlignment : >55}")
 
     # Option 5
     leftAlignment = "5. Display venonmous species wildlife"
     rightAlignment = "wildlife> species <city> venomous"
-    print(f"{leftAlignment : <20}{ rightAlignment : >27}")
+    print(f"{leftAlignment : <35}{ rightAlignment : >55}")
 
 
 
@@ -86,7 +88,6 @@ def display_species(specieList):
 
 
 
-from nomination import gps_coordinate
 
 #Task 4
 def gps(city):
@@ -97,6 +98,7 @@ def gps(city):
        return coordinate
     else:
        return None
+    
 def search_species(city):
     # Stub implementation, to be replaced with actual logic later
     # For now, return a predefined list of species for any city
@@ -105,7 +107,9 @@ def search_species(city):
         {"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil", "TaxonID": 1039}},
         {"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous", "TaxonID": 1234}}
     ]
-#assert gps("Brisbane") == {"latitude": -27.4689682, "longitude": 153.0234991}
+
+def assert_gps_function():
+    assert gps("Brisbane") == {"latitude": -27.4689682, "longitude": 153.0234991}
 
 def search_sightings(taxonid, city):
     # Stub implementation, to be replaced with actual logic later
@@ -140,11 +144,11 @@ def display_sightings(sightings):
 
 #Task 5
     
-def filter_venomous(species_list):
+def filter_venomous(speciesList):
     """
     Function to filter out non-venomous species from a list.
     """
-    return [species for species in species_list if species["Species"]["PestStatus"] == "Venomous"]
+    return [species for species in speciesList if species["Species"]["PestStatus"] == "Venomous"]
 
 #assert filter_venomous([]) == []
 #assert filter_venomous([{"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil"}}]) == []
@@ -189,9 +193,9 @@ def main():
         # Get the city from the command
             if len(userInput.split()) >= 2 and userInput.split()[1] == "venomous":
                 city = userInput.split()[1]
-                species_list = search_species(city)
-                venomous_species_list = filter_venomous(species_list)
-                display_species(venomous_species_list)
+                speciesList = search_species(city)
+                venomousSpeciesList = filter_venomous(speciesList)
+                display_species(venomousSpeciesList)
             elif len(userInput.split()) >= 2 and userInput.split()[1] is not None:
                 city = userInput.split()[1]
                 speciesList = search_species(city)
