@@ -86,21 +86,26 @@ def display_species(specieList):
 
 
 
-
+from nomination import gps_coordinate
 
 #Task 4
 def gps(city):
     # Stub implementation
-    return {"latitude": -27.4689682, "longitude": 153.0234991}
+   # return {"latitude": -27.4689682, "longitude": 153.0234991}
+    coordinate = gps_coordinate(city)
+    if coordinate:
+       return coordinate
+    else:
+       return None
 def search_species(city):
     # Stub implementation, to be replaced with actual logic later
     # For now, return a predefined list of species for any city
-    coordinate = gps(city)
+   # coordinate = gps(city)
     return [
         {"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil", "TaxonID": 1039}},
         {"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous", "TaxonID": 1234}}
     ]
-assert gps("Brisbane") == {"latitude": -27.4689682, "longitude": 153.0234991}
+#assert gps("Brisbane") == {"latitude": -27.4689682, "longitude": 153.0234991}
 
 def search_sightings(taxonid, city):
     # Stub implementation, to be replaced with actual logic later
@@ -216,5 +221,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
