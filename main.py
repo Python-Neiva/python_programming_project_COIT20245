@@ -32,7 +32,7 @@ def display_menu():
 
     # Option 5
     leftAlignment = "5. Display venonmous species wildlife"
-    rightAlignment = "wildlife> species venomous <city>"
+    rightAlignment = "wildlife> species <city> venomous"
     print(f"{leftAlignment : <20}{ rightAlignment : >27}")
 
 
@@ -89,14 +89,18 @@ def display_species(specieList):
 
 
 #Task 4
-
+def gps(city):
+    # Stub implementation
+    return {"latitude": -27.4689682, "longitude": 153.0234991}
 def search_species(city):
     # Stub implementation, to be replaced with actual logic later
     # For now, return a predefined list of species for any city
+    coordinate = gps(city)
     return [
         {"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil", "TaxonID": 1039}},
         {"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous", "TaxonID": 1234}}
     ]
+assert gps("Brisbane") == {"latitude": -27.4689682, "longitude": 153.0234991}
 
 def search_sightings(taxonid, city):
     # Stub implementation, to be replaced with actual logic later
@@ -137,6 +141,9 @@ def filter_venomous(species_list):
     """
     return [species for species in species_list if species["Species"]["PestStatus"] == "Venomous"]
 
+#assert filter_venomous([]) == []
+#assert filter_venomous([{"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil"}}]) == []
+#assert filter_venomous([{"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}]) == [{"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}]
 
 
 
@@ -209,4 +216,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
