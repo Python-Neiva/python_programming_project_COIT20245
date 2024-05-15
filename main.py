@@ -82,7 +82,12 @@ def main():
             display_menu()
         elif userInput == "exit" or userInput == "Exit the application":
             print("Exit the Application")
-            exit()
+        if userInput.startswith("species"):
+        # Get the city from the command
+            city = userInput.split()[1]
+            speciesList = searchSpecies(city)
+            display_species(speciesList)
+        exit()
 #Testing
 #write display 2 options
 # pass
@@ -108,13 +113,6 @@ if __name__ == "__main__":
 #Task 3
 #function that:...
 
-
-# TODO delete this function, since it has already been utilized before.
-def display_menu():
-    print("Menu:")
-    print("1. Display animal species in a city")
-    print("2. Other options...")
-
 def searchSpecies(city):
     # Stub implementation, to be replaced with actual logic later
     # For now, return a predefined list of species for any city
@@ -128,22 +126,8 @@ def display_species(speciesList):
     for species in speciesList:
         print(f"Common Name: {species['Species']['AcceptedCommonName']}, Pest Status: {species['Species']['PestStatus']}")
 
-def main():
-    display_menu()
-    command = input("Enter command: ")
 
-    if command.startswith("species"):
-        # Extract the city from the command
-        parts = command.split()
-        if len(parts) > 1:
-            city = parts[1]
-            speciesList = searchSpecies(city)
-            display_species(speciesList)
-        else:
-            print("Please provide a city after 'species'.")
 
-if __name__ == "__main__":
-    main()
 
 
 #Task 4
