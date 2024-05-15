@@ -166,7 +166,8 @@ def main():
             display_menu()
 
         if userInput == "exit" or userInput == "Exit the application":
-            print("Exit the Application")
+            print("Exiting Application")
+            exit()
 
         if userInput.startswith("species"):
         # Get the city from the command
@@ -192,7 +193,6 @@ def main():
         
         print("Please, select one of the given options")
         display_menu()
-        exit()
 
 
 if __name__ == "__main__":
