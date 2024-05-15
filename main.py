@@ -32,7 +32,7 @@ def display_menu():
 
     # Option 5
     leftAlignment = "5. Display venonmous species wildlife"
-    rightAlignment = "wildlife> species Cairns venomous <city> <pest status> "
+    rightAlignment = "wildlife> species venomous <city>"
     print(f"{leftAlignment : <20}{ rightAlignment : >27}")
 
 
@@ -85,9 +85,9 @@ def search_species(city):
         {"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}
     ]
 
-def display_species(speciesList):
+def display_species(specieList):
     print("Species found:")
-    for species in speciesList:
+    for species in specieList:
         acceptedName = species['Species']['AcceptedCommonName']
         pestStatus = species['Species']['PestStatus']
         print(f"Common Name: {acceptedName}, Pest Status: {pestStatus}")
@@ -113,9 +113,9 @@ def search_sightings(taxonid, city):
         {"properties": {"StartDate": "1999-11-15", "LocalityDetails": "Tinaroo"}}
     ]
 
-def display_species(speciesList):
+def display_species(specieList):
     print("Species found:")
-    for species in speciesList:
+    for species in specieList:
         acceptedName = species['Species']['AcceptedCommonName']
         taxonID = species['Species']['TaxonID']
         pestStatus = species['Species']['PestStatus']
@@ -132,14 +132,18 @@ def display_sightings(sightings):
 
 
 
+
+
+
+
+
 #Task 5
-
+    
 def filter_venomous(species_list):
-    pass
-
-
-
-
+    """
+    Function to filter out non-venomous species from a list.
+    """
+    return [species for species in species_list if species["Species"]["PestStatus"] == "Venomous"]
 
 
 
@@ -179,16 +183,24 @@ def main():
 
         if userInput.startswith("species"):
         # Get the city from the command
-            city = userInput.split()[1]
-            speciesList = search_species(city)
-            display_species(speciesList)
+            if userInput.split()[1] == "venomous":
+                city = userInput.split()[1]
+                species_list = search_species(city)
+                venomous_species_list = filter_venomous(species_list)
+                display_species(venomous_species_list)
+            elif userInput.split()[1] is not None:
+                city = userInput.split()[1]
+                speciesList = search_species(city)
+                display_species(speciesList)
+            else:
+                print("Invalid command. Please use 'species <city>' or 'species <city> venomous'.")
 
         if userInput.startswith("sightings"):
             # Extract species and city from the command
-            speciesAndCity = userInput.split()
+            specieCityData = userInput.split()
             # Validate that the user input includes city and sightings
-            if len(speciesAndCity) > 2:
-                species, city = speciesAndCity[1], speciesAndCity[2]
+            if len(specieCityData) > 2:
+                species, city = specieCityData[1], specieCityData[2]
                 sightings = search_sightings(species, city)
                 display_sightings(sightings)
             else:
