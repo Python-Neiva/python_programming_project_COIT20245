@@ -150,6 +150,11 @@ def filter_venomous(speciesList):
     """
     return [species for species in speciesList if species["Species"]["PestStatus"] == "Venomous"]
 
+def assert_filter_venomous():
+    assert filter_venomous([{"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil"}}]) == []
+    assert filter_venomous([{"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}]) == [{"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}]
+    assert filter_venomous([]) == []
+
 #assert filter_venomous([]) == []
 #assert filter_venomous([{"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil"}}]) == []
 #assert filter_venomous([{"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}]) == [{"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}]
