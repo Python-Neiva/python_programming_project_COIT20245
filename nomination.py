@@ -2,7 +2,7 @@ import requests
 import json
 
 def gps_coordinate(city):
-    url = "https://nominatim.openstreetmap.org/search?q={city}&format=json"
+    url = f"https://nominatim.openstreetmap.org/search?q={city}&format=json"
     response = requests.get(url)
     data = response.json()
 
