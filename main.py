@@ -77,14 +77,6 @@ def display_menu():
 #Task 3
 #function that:...
 
-def search_species(city):
-    # Stub implementation, to be replaced with actual logic later
-    # For now, return a predefined list of species for any city
-    return [
-        {"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil"}},
-        {"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}
-    ]
-
 def display_species(specieList):
     print("Species found:")
     for species in specieList:
@@ -183,12 +175,12 @@ def main():
 
         if userInput.startswith("species"):
         # Get the city from the command
-            if userInput.split()[1] == "venomous":
+            if len(userInput.split()) >= 2 and userInput.split()[1] == "venomous":
                 city = userInput.split()[1]
                 species_list = search_species(city)
                 venomous_species_list = filter_venomous(species_list)
                 display_species(venomous_species_list)
-            elif userInput.split()[1] is not None:
+            elif len(userInput.split()) >= 2 and userInput.split()[1] is not None:
                 city = userInput.split()[1]
                 speciesList = search_species(city)
                 display_species(speciesList)
