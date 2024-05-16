@@ -48,5 +48,5 @@ def get_species_list(coordinate, radius):
         return None
 
 # Uncomment the following assert statements for testing
-# assert get_species_list((-16.92, 145.777), 100000) is not None
-# assert len(get_species_list((-16.92, 145.777), 100000)) > 0
+assert get_species_list((-16.92, 145.777), 100000) is not None
+assert len(get_species_list((-16.92, 145.777), 100000)) > 0
