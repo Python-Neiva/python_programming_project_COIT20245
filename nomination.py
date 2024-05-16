@@ -16,4 +16,5 @@ def gps_coordinate(city):
     else:
         return None #special data type that indicates that thre is none data.
 
-print(gps_coordinate("Cairns"))
+coordinates = gps_coordinate("Cairns")
+print(coordinates)
