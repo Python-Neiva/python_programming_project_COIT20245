@@ -9,9 +9,11 @@ def gps_coordinate(city):
     
     if data:
         # Extract the latitude and longitude from the first result
-        latitude = float(data[0]['lat'])
-        longitude = float(data[0]['lon'])
+        result = data[0]
+        latitude = float(result['lat'])
+        longitude = float(result['lon'])
         return {"latitude": latitude, "longitude": longitude}
     else:
-        return None
+        return None #special data type that indicates that thre is none data.
+
 print(gps_coordinate("Cairns"))
