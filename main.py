@@ -75,18 +75,7 @@ def display_menu():
 
 
 
-
 #Task 3
-#function that:...
-
-def display_species(specieList):
-    print("Species found:")
-    for species in specieList:
-        acceptedName = species['Species']['AcceptedCommonName']
-        pestStatus = species['Species']['PestStatus']
-        print(f"Common Name: {acceptedName}, Pest Status: {pestStatus}")
-
-
 
 
 #Task 4
@@ -102,7 +91,7 @@ def gps(city):
 def search_species(city):
     # Stub implementation, to be replaced with actual logic later
     # For now, return a predefined list of species for any city
-   # coordinate = gps(city)
+    coordinate = gps(city)
     return [
         {"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil", "TaxonID": 1039}},
         {"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous", "TaxonID": 1234}}
@@ -118,14 +107,28 @@ def search_sightings(taxonid, city):
         {"properties": {"StartDate": "1999-11-15", "LocalityDetails": "Tinaroo"}}
     ]
 
-def display_species(specieList):
+def display_species(specieList: list):
+    """
+    Display the species information from the given list.
+
+    Args:
+        specieList (list): A list of dictionaries containing species information.
+
+    Returns:
+        None
+    """
     print("Species found:")
     for species in specieList:
         acceptedName = species['Species']['AcceptedCommonName']
-        taxonID = species['Species']['TaxonID']
         pestStatus = species['Species']['PestStatus']
+        #the get method will return None if the specified key does not exist in the dictionary.
+        #This can be useful to prevent KeyError exceptions from being raised when trying to access a key that might not exist.
+        taxonID = species['Species'].get('TaxonID')
 
-        print(f"Common Name: {acceptedName}, TaxonID: {taxonID}, Pest Status: {pestStatus}")
+        if taxonID:
+            print(f"Common Name: {acceptedName}, TaxonID: {taxonID}, Pest Status: {pestStatus}")
+        else:
+            print(f"Common Name: {acceptedName}, Pest Status: {pestStatus}")
 
 def display_sightings(sightings):
     print("Sightings found:")
@@ -196,7 +199,7 @@ def main():
 
         if userInput.startswith("species"):
         # Get the city from the command
-            if len(userInput.split()) >= 2 and userInput.split()[1] == "venomous":
+            if len(userInput.split()) >= 2 and userInput.split()[1] is not None and userInput.split()[2] == "venomous":
                 city = userInput.split()[1]
                 speciesList = search_species(city)
                 venomousSpeciesList = filter_venomous(speciesList)
@@ -209,7 +212,7 @@ def main():
                 print("Invalid command. Please use 'species <city>' or 'species <city> venomous'.")
 
         if userInput.startswith("sightings"):
-            # Extract species and city from the command
+            # Extract species (taxonID) and city from the command
             specieCityData = userInput.split()
             # Validate that the user input includes city and sightings
             if len(specieCityData) > 2:

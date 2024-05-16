@@ -1,5 +1,5 @@
 import requests
-import json
+#import json
 
 def gps_coordinate(city):
     url = f"https://nominatim.openstreetmap.org/search?q={city}&format=json"
