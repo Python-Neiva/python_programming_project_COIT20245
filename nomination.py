@@ -16,5 +16,11 @@ def gps_coordinate(city):
     else:
         return None #special data type that indicates that thre is none data.
 
-coordinates = gps_coordinate("Cairns")
-print(coordinates)
+def test_gps_coordinate():
+    # Test with a known city
+    coordinates = gps_coordinate("Cairns")
+    assert coordinates == {"latitude": -16.9206657, "longitude": 145.7721854}
+    
+    # Test with an unknown city
+    coordinates = gps_coordinate("Unknown City")
+    assert coordinates == None
