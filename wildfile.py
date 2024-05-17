@@ -25,7 +25,7 @@ print(get_species_list())
 # wildlife.py
 import requests
 
-def get_species_list(coordinate, radius):
+def get_species_list(coordinate, radius) -> list:
     """
     Retrieve a list of species in an area defined by a circle.
     
@@ -42,11 +42,19 @@ def get_species_list(coordinate, radius):
     response = requests.get(url)
     data = response.json()
     
-    if "SpeciesSightingSummariesContainer" in data:
-        species_list = data["SpeciesSightingSummariesContainer"]["SpeciesSightingSummary"]
+
+    if "SpeciesSightingSummariesContainer" in data and "SpeciesSightingSummary" in data["SpeciesSightingSummariesContainer"]:
+        species_list = [
+            {
+            "TaxonID": item.get("Species").get("TaxonID"),
+            "AcceptedCommonName": item.get("Species").get("AcceptedCommonName"),
+            "PestStatus": item.get("Species").get("PestStatus")
+            }
+            for item in data["SpeciesSightingSummariesContainer"]["SpeciesSightingSummary"]
+        ]
         return species_list
     else:
-        return None
+        return []
 
 # Uncomment the following assert statements for testing
 def test_get_species_list():
@@ -54,9 +62,13 @@ def test_get_species_list():
     species_list = get_species_list((-16.92, 145.777), 100000)
     assert species_list is not None
     assert len(species_list) > 0
+    print(species_list)
 
     # Test with an unknown location
     species_list = get_species_list((0, 0), 100000)
-    assert species_list is None
+    assert species_list == []
+    print(species_list)
+
+# test_get_species_list()
 
 

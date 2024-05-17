@@ -79,11 +79,11 @@ def display_menu():
 
 
 #Task 4
-def gps(city):
+def gps(city) -> dict or None: # type: ignore - it canbe a dict or a None
     # Stub implementation
-   # return {"latitude": -27.4689682, "longitude": 153.0234991}
+    # return {"latitude": -27.4689682, "longitude": 153.0234991}
     coordinate = gps_coordinate(city)
-    if coordinate:
+    if coordinate and coordinate != {}:
        return coordinate
     else:
        return None
