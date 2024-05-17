@@ -1,5 +1,4 @@
 import requests
-#import json
 
 def gps_coordinate(city):
     url = f"https://nominatim.openstreetmap.org/search?q={city}&format=json"
@@ -8,13 +7,13 @@ def gps_coordinate(city):
     data = response.json()
     
     if data:
-        # Extract the latitude and longitude from the first result
+        # Extract the latitude and longitude from the first resulta and convert data type into float
         result = data[0]
         latitude = float(result['lat'])
         longitude = float(result['lon'])
-        return {"latitude": latitude, "longitude": longitude}
+        return {"latitude": latitude, "longitude": longitude} #Return the dictionary with the latitude and longitude
     else:
-        return None #special data type that indicates that thre is none data.
+        return None #Return the special data type that indicates that thre is none data.
 
 def test_gps_coordinate():
     # Test with a known city
@@ -23,4 +22,7 @@ def test_gps_coordinate():
     
     # Test with an unknown city
     coordinates = gps_coordinate("Unknown City")
+    print(coordinates)
     assert coordinates == None
+
+#test_gps_coordinate()

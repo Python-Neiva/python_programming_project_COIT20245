@@ -100,14 +100,14 @@ def search_species(city):
 def assert_gps_function():
     assert gps("Brisbane") == {"latitude": -27.4689682, "longitude": 153.0234991}
 
-def search_sightings(taxonid, city):
+def search_sightings(taxonID, city) -> list:
     # Stub implementation, to be replaced with actual logic later
     # For now, return a predefined list of sightings for any species and city
     return [
         {"properties": {"StartDate": "1999-11-15", "LocalityDetails": "Tinaroo"}}
     ]
 
-def display_species(specieList: list):
+def display_species(specieList: list) -> None:
     """
     Display the species information from the given list.
 
@@ -130,7 +130,16 @@ def display_species(specieList: list):
         else:
             print(f"Common Name: {acceptedName}, Pest Status: {pestStatus}")
 
-def display_sightings(sightings):
+def display_sightings(sightings: list) -> None:
+    """
+    Display the details of each sighting in the given list.
+
+    Args:
+        sightings (list): A list of sighting species dictionaries.
+
+    Returns:
+        None
+    """
     print("Sightings found:")
     for sighting in sightings:
         startDate = sighting['properties']['StartDate']
@@ -158,6 +167,7 @@ def assert_filter_venomous():
     assert filter_venomous([{"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}]) == [{"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}]
     assert filter_venomous([]) == []
 
+#assert_filter_venomous()
 #assert filter_venomous([]) == []
 #assert filter_venomous([{"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil"}}]) == []
 #assert filter_venomous([{"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}]) == [{"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}]
