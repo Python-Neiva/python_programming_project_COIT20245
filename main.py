@@ -194,6 +194,9 @@ o If the user enters exit, then the system should exit.
 
 '''
 def main():
+    """
+    Main function that runs the wildlife application.
+    """
     display_menu()
 
     while True:
