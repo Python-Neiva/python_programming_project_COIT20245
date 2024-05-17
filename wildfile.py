@@ -38,6 +38,7 @@ def get_species_list(coordinate, radius):
     """
     latitude, longitude = coordinate
     url = f"https://apps.des.qld.gov.au/species/?op=getspecieslist&kingdom=animals&circle={latitude},{longitude},{radius}"
+    print(url)
     response = requests.get(url)
     data = response.json()
     
@@ -48,5 +49,14 @@ def get_species_list(coordinate, radius):
         return None
 
 # Uncomment the following assert statements for testing
-assert get_species_list((-16.92, 145.777), 100000) is not None
-assert len(get_species_list((-16.92, 145.777), 100000)) > 0
+def test_get_species_list():
+    # Test with a known location
+    species_list = get_species_list((-16.92, 145.777), 100000)
+    assert species_list is not None
+    assert len(species_list) > 0
+
+    # Test with an unknown location
+    species_list = get_species_list((0, 0), 100000)
+    assert species_list is None
+
+
