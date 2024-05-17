@@ -41,4 +41,4 @@ def test_gps_coordinate():
     print(coordinates)
     assert coordinates == {}
 
-#test_gps_coordinate()
+test_gps_coordinate()
