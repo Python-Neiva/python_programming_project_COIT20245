@@ -174,11 +174,19 @@ def sort_by_date(sightings):
     """
     # Implementing insertion sort algorithm
     for i in range(1, len(sightings)):
+        # This is the element we want to position in its correct place
         key = sightings[i]
+
+        # Initialize the variable that will be used to find the correct position of the element referenced by `key` sometimes called `key_item` in this algorithm
         j = i - 1
+
+        # Move elements of `sightings[0..i-1]`, that are greater than `key`, to one position ahead of their current position
         while j >= 0 and sightings[j]["properties"].get("StartDate", "") > key["properties"].get("StartDate", ""):
+            # Move the element to the right
             sightings[j + 1] = sightings[j]
             j -= 1
+        
+        # Insert the element in its correct position, which is `j + 1`, because we decremented `j` in the last step.
         sightings[j + 1] = key
     return sightings
 
