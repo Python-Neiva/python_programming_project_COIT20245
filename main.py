@@ -41,9 +41,11 @@ def display_menu():
 def main():
     display_menu()
     while True:
-        command = input("wildlife> ").strip().split()
+        command = input("wildlife> ").strip().lower().split()
+        INVALID_COMMAND_MSG = "Invalid command. Please try again."
+
         if len(command) == 0:
-            print("Invalid command. Please try again.")
+            print(INVALID_COMMAND_MSG)
             continue
         if command[0] == "help":
             display_menu()
@@ -62,7 +64,7 @@ def main():
                 venomous_species = filter_venomous(species_list)
                 display_species(venomous_species)
             else:
-                print("Invalid command. Please try again.")
+                print(INVALID_COMMAND_MSG)
         elif command[0] == "sightings":
             if len(command) == 3:
                 city = command[1]
@@ -70,9 +72,10 @@ def main():
                 sightings = search_sightings(taxon_id, city)
                 display_sightings(sightings)
             else:
-                print("Invalid command. Please try again.")
+                print(INVALID_COMMAND_MSG)
         else:
-            print("Invalid command. Please try again.")
+            print(INVALID_COMMAND_MSG)
+
 import wildlife
 import nominatim
 
