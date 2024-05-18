@@ -21,8 +21,8 @@ def gps_coordinate(city) -> dict:
             return {"latitude": latitude, "longitude": longitude}
     return {"latitude": -27.4689682, "longitude": 153.0234991} #Default coordinates for Brisbane
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
     # Testing the gps_coordinate function
-    # coord = gps_coordinate("Brisbane")
-    # assert coord == {"latitude": -27.4689682, "longitude": 153.0234991}
-    # print("GPS coordinate function works correctly.")
+    coord = gps_coordinate("Brisbane")
+    assert coord == {"latitude": -27.4689682, "longitude": 153.0234991}
+    print("GPS coordinate function works correctly.")

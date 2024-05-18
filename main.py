@@ -4,15 +4,40 @@ import sys
 RADIUS = 100000  # 100 km radius
 
 def display_menu():
+    """
+    This function displays a menu with numbered options.
+
+    """
     print("Help")
     print("====")
-    print("The following commands are recognised.")
-    print("Display help wildlife> help")
-    print("Exit the application wildlife> exit")
-    print("Display animal species in a city wildlife> species <City>")
-    print("Display animal sightings in a city wildlife> sightings <City> <TaxonID>")
-    print("Display venomous species wildlife> species <City> venomous")
+    print("The following commands are recognized:")
 
+    # Option 1
+    rightAlignment = "wildlife> help"
+    leftAlignment = "1. Display help"
+    print(f"{leftAlignment : <35}{rightAlignment : >55} ")
+
+    # Option 2
+    rightAlignment = "wildlife> exit"
+    leftAlignment = "2. Exit the application "
+    print(f"{leftAlignment : <35}{ rightAlignment : >55}")
+
+    # Option 3
+    leftAlignment = "3. Display animal species in a city"
+    rightAlignment = "wildlife> species <city>"
+    print(f"{leftAlignment : <35}{ rightAlignment : >55}")
+
+    # # Option 4
+    # leftAlignment = "4. Display animal sightings in a city"
+    # rightAlignment = "wildlife> sightings <city> <tax ID>"
+    # print(f"{leftAlignment : <35}{ rightAlignment : >55}")
+
+    # # Option 5
+    # leftAlignment = "5. Display venonmous species wildlife"
+    # rightAlignment = "wildlife> species <city> venomous"
+    # print(f"{leftAlignment : <35}{ rightAlignment : >55}")
+
+    
 def main():
     display_menu()
     while True:
@@ -92,6 +117,7 @@ def search_sightings(taxonid, city) -> list:
     coordinate = nominatim.gps_coordinate(city)
 
     surveys = wildlife.get_surveys_by_species(coordinate, RADIUS, taxonid)
+    '''This line of code is creating a new list that contains only the surveys where the "SiteCode" is "INCIDENTAL". by using a list comprehension'''
     filtered_surveys = [survey for survey in surveys if survey["properties"]["SiteCode"] == "INCIDENTAL"]
     return filtered_surveys
 

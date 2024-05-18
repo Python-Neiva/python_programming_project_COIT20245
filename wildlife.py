@@ -40,6 +40,8 @@ def get_surveys_by_species(coordinate, radius, taxonid):
   response.raise_for_status()
 
   data = response.json()
+  '''
+  if the data dictionary has a key "features", this line of code will return the value associated with that key. If there is no "features" key in the dictionary, it will return an empty list.'''
   return data.get("features", [])
 
 # Example usage ( #TODO uncomment for testing after implementing asserts)
