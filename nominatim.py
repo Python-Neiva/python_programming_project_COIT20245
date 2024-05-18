@@ -24,5 +24,22 @@ def gps_coordinate(city) -> dict:
 if __name__ == "__main__":
     # Testing the gps_coordinate function
     coord = gps_coordinate("Brisbane")
+    print(coord)
     assert coord == {"latitude": -27.4689682, "longitude": 153.0234991}
     print("GPS coordinate function works correctly.")
+
+    # Testing with other cities
+    coord = gps_coordinate("Sydney")
+    print(coord)
+    assert coord == {"latitude": -33.8698439, "longitude": 151.2082848}
+    print("GPS coordinate function works correctly for Sydney.")
+
+    coord = gps_coordinate("Melbourne")
+    print(coord)
+    assert coord == {"latitude": -37.8142454, "longitude": 144.9631732}
+    print("GPS coordinate function works correctly for Melbourne.")
+
+    coord = gps_coordinate("Perth")
+    print(coord)
+    assert coord == {"latitude": -31.9558933, "longitude": 115.8605855}
+    print("GPS coordinate function works correctly for Perth.")
