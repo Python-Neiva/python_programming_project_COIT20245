@@ -43,3 +43,4 @@ if __name__ == "__main__":
     print(coord)
     assert coord == {"latitude": -31.9558933, "longitude": 115.8605855}
     print("GPS coordinate function works correctly for Perth.")
+    
