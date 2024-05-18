@@ -40,6 +40,7 @@ def get_surveys_by_species(coordinate, radius, taxonid):
   response.raise_for_status()
 
   data = response.json()
+  print(data)
   return data.get("features", [])
 
 # Example usage ( #TODO uncomment for testing after implementing asserts)

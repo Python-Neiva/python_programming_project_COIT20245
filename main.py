@@ -51,7 +51,7 @@ import nominatim
 
 def search_species(city):
     coordinate = gps(city)
-    species_list = get_species_list(coordinate, RADIUS)
+    species_list = wildlife.get_species_list(coordinate, RADIUS)
     return species_list
 
 def display_species(species_list):
@@ -70,7 +70,7 @@ def filter_venomous(species_list):
     return [species for species in species_list if species["Species"].get("PestStatus") == "Venomous"]
 
 def gps(city):
-    return gps_coordinate(city)
+    return nominatim.gps_coordinate(city)
 
 # Functions for Task 9 - Retrieving sightings
 
@@ -92,26 +92,8 @@ def search_sightings(taxonid, city) -> list:
     coordinate = nominatim.gps_coordinate(city)
 
     surveys = wildlife.get_surveys_by_species(coordinate, RADIUS, taxonid)
-    filtered_surveys = [survey for survey in surveys if survey["SiteCode"] == "INCIDENTAL"]
+    filtered_surveys = [survey for survey in surveys if survey["properties"]["SiteCode"] == "INCIDENTAL"]
     return filtered_surveys
-    
-    
-def get_surveys_by_species(coordinate, radius, taxonid):
-    """
-    Retrieves a list of animal surveys in an area for a given species using the Queensland wildlife data API.
-
-    Args:
-            coordinate (dict): A dictionary containing latitude and longitude keys.
-            radius (int): The search radius in meters.
-            taxonid (int): The taxon ID of the species to search for.
-
-    Returns:
-            list: A list of survey dictionaries.
-    """
-    surveys = wildlife.get_surveys_by_species(coordinate, radius, taxonid)
-    filtered_surveys = [survey for survey in surveys if survey["SiteCode"] == "INCIDENTAL"]
-    return filtered_surveys
-
 
 if __name__ == "__main__":
     main()
