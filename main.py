@@ -39,6 +39,9 @@ def display_menu():
 
     
 def main():
+    """
+    Main function that runs the wildlife application.
+    """
     display_menu()
     while True:
         command = input("wildlife> ").strip().lower().split()
@@ -94,7 +97,9 @@ def display_species(species_list):
         print(f"Species: {common_name}, Pest Status: {pest_status}")
 
 def display_sightings(sightings):
-    for sighting in sightings:
+    # Sort sightings by date first
+    sorted_sightings = sort_by_date(sightings)
+    for sighting in sorted_sightings:
         date = sighting["properties"].get("StartDate", "Unknown Date")
         location = sighting["properties"].get("LocalityDetails", "Unknown Location")
         print(f"Sighting Date: {date}, Location: {location}")
@@ -155,6 +160,36 @@ def search_sightings(taxonid, city) -> list:
     '''This line of code is creating a new list that contains only the surveys where the "SiteCode" is "INCIDENTAL". by using a list comprehension'''
     filtered_surveys = [survey for survey in surveys if survey["properties"]["SiteCode"] == "INCIDENTAL"]
     return filtered_surveys
+
+#task 10 - earliest sighting
+def sort_by_date(sightings):
+    """
+    Sorts a list of sightings by their start dates in ascending order.
+
+    Args:
+        sightings (list): A list of sighting dictionaries.
+
+    Returns:
+        list: A new list of sightings sorted by earliest start date first.
+    """
+    # Implementing insertion sort algorithm
+    for i in range(1, len(sightings)):
+        # This is the element we want to position in its correct place
+        key = sightings[i]
+
+        # Initialize the variable that will be used to find the correct position of the element referenced by `key` sometimes called `key_item` in this algorithm
+        j = i - 1
+
+        # Move elements of `sightings[0..i-1]`, that are greater than `key`, to one position ahead of their current position
+        while j >= 0 and sightings[j]["properties"].get("StartDate", "") > key["properties"].get("StartDate", ""):
+            # Move the element to the right
+            sightings[j + 1] = sightings[j]
+            j -= 1
+        
+        # Insert the element in its correct position, which is `j + 1`, because we decremented `j` in the last step.
+        sightings[j + 1] = key
+    return sightings
+
 
 if __name__ == "__main__":
     main()
