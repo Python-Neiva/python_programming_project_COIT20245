@@ -50,6 +50,23 @@ def get_surveys_by_species(coordinate, radius, taxonid) -> list:
 
 
 def test_get_species_list():
+    """
+    Test function for the get_species_list function.
+
+    This function tests the get_species_list function by calling it with a set of coordinates and a radius.
+    It asserts that the returned species list is a list and has a length greater than 0.
+    It also prints a message indicating that the function works correctly.
+
+    Example usage:
+    - Uncomment the example usage code after reviewing the asserts.
+    - Replace the coordinate values with the desired latitude and longitude.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     RADIUS = 100000  # 100 km radius
 
     # Testing the get_species_list function
@@ -67,6 +84,23 @@ def test_get_species_list():
     print("Get species list function works correctly.")
 
 def test_get_surveys_by_species():
+    """
+    Test function for the get_surveys_by_species function.
+
+    This function tests the get_surveys_by_species function by calling it with a set of coordinates, radius, and taxonid.
+    It asserts that the returned surveys list is a list and prints a message indicating that the function works correctly.
+
+    Example usage:
+    - Uncomment the example usage code after reviewing the asserts.
+    - Replace the coordinate values with the desired latitude and longitude.
+    - Replace the taxonid value with the actual taxon ID of the species to test.
+
+    Args:
+        None
+
+    Returns:
+        None
+    """
     coordinate = {"latitude": -27.4689682, "longitude": 153.0234991}
     radius = 100000  # 100 km radius
     taxonid = 12345  # Replace with the actual taxon ID of the species to test
