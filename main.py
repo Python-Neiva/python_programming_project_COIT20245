@@ -1,7 +1,7 @@
-from nomination import gps_coordinate
+import sys
 
-#Task 1
-#create menu
+
+RADIUS = 100000  # 100 km radius
 
 def display_menu():
     """
@@ -11,10 +11,10 @@ def display_menu():
     print("Help")
     print("====")
     print("The following commands are recognized:")
-    
+
     # Option 1
     rightAlignment = "wildlife> help"
-    leftAlignment = "1. Display help" 
+    leftAlignment = "1. Display help"
     print(f"{leftAlignment : <35}{rightAlignment : >55} ")
 
     # Option 2
@@ -37,215 +37,127 @@ def display_menu():
     rightAlignment = "wildlife> species <city> venomous"
     print(f"{leftAlignment : <35}{ rightAlignment : >55}")
 
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#Task 3
-
-
-#Task 4
-def gps(city) -> dict or None: # type: ignore - it canbe a dict or a None
-    # Stub implementation
-    # return {"latitude": -27.4689682, "longitude": 153.0234991}
-    coordinate = gps_coordinate(city)
-    if coordinate and coordinate != {}:
-       return coordinate
-    else:
-       return None
     
-def search_species(city):
-    # Stub implementation, to be replaced with actual logic later
-    # For now, return a predefined list of species for any city
-    coordinate = gps(city)
-    return [
-        {"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil", "TaxonID": 1039}},
-        {"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous", "TaxonID": 1234}}
-    ]
-
-def assert_gps_function():
-    assert gps("Brisbane") == {"latitude": -27.4689682, "longitude": 153.0234991}
-
-def search_sightings(taxonID, city) -> list:
-    # Stub implementation, to be replaced with actual logic later
-    # For now, return a predefined list of sightings for any species and city
-    return [
-        {"properties": {"StartDate": "1999-11-15", "LocalityDetails": "Tinaroo"}}
-    ]
-
-def display_species(specieList: list) -> None:
-    """
-    Display the species information from the given list.
-
-    Args:
-        specieList (list): A list of dictionaries containing species information.
-
-    Returns:
-        None
-    """
-    print("Species found:")
-    for species in specieList:
-        acceptedName = species['Species']['AcceptedCommonName']
-        pestStatus = species['Species']['PestStatus']
-        #the get method will return None if the specified key does not exist in the dictionary.
-        #This can be useful to prevent KeyError exceptions from being raised when trying to access a key that might not exist.
-        taxonID = species['Species'].get('TaxonID')
-
-        if taxonID:
-            print(f"Common Name: {acceptedName}, TaxonID: {taxonID}, Pest Status: {pestStatus}")
-        else:
-            print(f"Common Name: {acceptedName}, Pest Status: {pestStatus}")
-
-def display_sightings(sightings: list) -> None:
-    """
-    Display the details of each sighting in the given list.
-
-    Args:
-        sightings (list): A list of sighting species dictionaries.
-
-    Returns:
-        None
-    """
-    print("Sightings found:")
-    for sighting in sightings:
-        startDate = sighting['properties']['StartDate']
-        LocalityDetails = sighting['properties']['LocalityDetails']
-        print(f"Start Date: {startDate}, Locality: {LocalityDetails}")
-        ## TODO make text more descriptive, like: whipsnake was sighted at Tinaroo, Cairns in 2013
-
-
-
-
-
-
-
-
-#Task 5
-    
-def filter_venomous(speciesList):
-    """
-    Function to filter out non-venomous species from a list.
-    """
-    return [species for species in speciesList if species["Species"]["PestStatus"] == "Venomous"]
-
-def assert_filter_venomous():
-    assert filter_venomous([{"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil"}}]) == []
-    assert filter_venomous([{"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}]) == [{"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}]
-    assert filter_venomous([]) == []
-
-#assert_filter_venomous()
-#assert filter_venomous([]) == []
-#assert filter_venomous([{"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil"}}]) == []
-#assert filter_venomous([{"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}]) == [{"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}]
-
-
-
-
-
-
-
-
-
-
-
-'''
-Task 2 User Input
-Next, write a main() function that displays the help menu and then 
-repeatedly prompts the user to input their command.
-• The user should be prompted for a command with the 
-following: “wildlife> ”
-o If the user inputs help, the function should call 
-display_menu() 
-o If the user enters exit, then the system should exit.
-
-'''
 def main():
     """
     Main function that runs the wildlife application.
     """
     display_menu()
-
     while True:
-        userInput = input("Wildlife>").strip().lower() 
-        print(f"The option that you have chosen is, {userInput}!")
-        
-        if userInput == "help" or userInput ==  "Display help":
+        command = input("wildlife> ").strip().lower().split()
+        INVALID_COMMAND_MSG = "Invalid command. Please try again."
+
+        if len(command) == 0:
+            print(INVALID_COMMAND_MSG)
+            continue
+        if command[0] == "help":
             display_menu()
-
-        if userInput == "exit" or userInput == "Exit the application":
-            print("Exiting Application")
-            exit()
-
-        if userInput.startswith("species"):
-        # Get the city from the command
-            if len(userInput.split()) >= 2 and userInput.split()[1] is not None and userInput.split()[2] == "venomous":
-                city = userInput.split()[1]
-                speciesList = search_species(city)
-                venomousSpeciesList = filter_venomous(speciesList)
-                display_species(venomousSpeciesList)
-            elif len(userInput.split()) >= 2 and userInput.split()[1] is not None:
-                city = userInput.split()[1]
-                speciesList = search_species(city)
-                display_species(speciesList)
+        elif command[0] == "exit":
+            sys.exit()
+        elif command[0] == "species":
+            if len(command) == 2:
+                city = command[1]
+                species_list = search_species(city)
+                display_species(species_list)
+            elif len(command) == 3 and command[2] == "venomous":
+                city = command[1]
+                species_list = search_species(city)
+                # uncomment to run the function that asserts the function filter_venomous
+                # test_filter_venomous()
+                venomous_species = filter_venomous(species_list)
+                display_species(venomous_species)
             else:
-                print("Invalid command. Please use 'species <city>' or 'species <city> venomous'.")
-
-        if userInput.startswith("sightings"):
-            # Extract species (taxonID) and city from the command
-            specieCityData = userInput.split()
-            # Validate that the user input includes city and sightings
-            if len(specieCityData) > 2:
-                species, city = specieCityData[1], specieCityData[2]
-                sightings = search_sightings(species, city)
+                print(INVALID_COMMAND_MSG)
+        elif command[0] == "sightings":
+            if len(command) == 3:
+                city = command[1]
+                taxon_id = command[2]
+                sightings = search_sightings(taxon_id, city)
                 display_sightings(sightings)
             else:
-                print("Please provide both species and city after 'sightings'.")
+                print(INVALID_COMMAND_MSG)
+        else:
+            print(INVALID_COMMAND_MSG)
 
-        '''
-        If none of the above options work,
-        the selected option is taken as an error,
-        and the menu with the options is displayed again.'''
-        
-        print("Please, select one of the given options")
-        display_menu()
+import wildlife
+import nominatim
 
+def search_species(city):
+    #test function for test_gps, which is used in thi function, uncomment to run the test
+    # test_gps()
+    coordinate = gps(city)
+    species_list = wildlife.get_species_list(coordinate, RADIUS)
+
+    return species_list
+
+def display_species(species_list):
+    for species in species_list:
+        common_name = species["Species"].get("AcceptedCommonName", "Unknown")
+        pest_status = species["Species"].get("PestStatus", "Unknown")
+        print(f"Species: {common_name}, Pest Status: {pest_status}")
+
+def display_sightings(sightings):
+    for sighting in sightings:
+        date = sighting["properties"].get("StartDate", "Unknown Date")
+        location = sighting["properties"].get("LocalityDetails", "Unknown Location")
+        print(f"Sighting Date: {date}, Location: {location}")
+
+def filter_venomous(species_list):
+    return [species for species in species_list if species["Species"].get("PestStatus") == "Venomous"]
+
+# Assert function for filter_venomous
+def test_filter_venomous():
+    species_list = [
+        {"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil"}},
+        {"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}},
+        {"Species": {"AcceptedCommonName": "spider", "PestStatus": "Venomous"}},
+        {"Species": {"AcceptedCommonName": "lizard", "PestStatus": "Nil"}},
+    ]
+    venomous_species = filter_venomous(species_list)
+    assert len(venomous_species) == 2
+    assert venomous_species[0]["Species"]["AcceptedCommonName"] == "snake"
+    assert venomous_species[1]["Species"]["AcceptedCommonName"] == "spider"
+    print("Filter venomous species test passed.")
+
+
+def gps(city) -> dict:
+    # Default coordinates for Brisbane (for testing purposes)
+    # return { "latitude": -27.4689682, "longitude": 153.0234991 }
+    return nominatim.gps_coordinate(city)
+
+def test_gps():
+    result = gps("Brisbane")
+    assert result == {"latitude": -27.4689682, "longitude": 153.0234991}
+    print("GPS test passed.")
+
+# Functions for Task 9 - Retrieving sightings
+
+def search_sightings(taxonid, city) -> list:
+    """
+
+    Retrieves a list of animal sightings in a city for a given species (optional).
+
+    Args:
+        taxonid (int): The taxon ID of the species to search for (optional).
+        city (str): The name of the city.
+
+    Returns:
+        list: A list of sighting dictionaries.
+    """
+
+    # Default sightings data for testing purposes
+    # return [{"properties":{"StartDate":"1999-11-15","LocalityDetails":"Tinaroo"}}]
+
+    if not city:
+        print("Error: Please specify a city for searching sightings.")
+        return []
+
+    coordinate = nominatim.gps_coordinate(city)
+
+    surveys = wildlife.get_surveys_by_species(coordinate, RADIUS, taxonid)
+    '''This line of code is creating a new list that contains only the surveys where the "SiteCode" is "INCIDENTAL". by using a list comprehension'''
+    filtered_surveys = [survey for survey in surveys if survey["properties"]["SiteCode"] == "INCIDENTAL"]
+    return filtered_surveys
 
 if __name__ == "__main__":
     main()
-
-
-
