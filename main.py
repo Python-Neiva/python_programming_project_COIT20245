@@ -46,8 +46,8 @@ def main():
                 print("Invalid command. Please try again.")
         else:
             print("Invalid command. Please try again.")
-from wildlife import get_species_list
-from nominatim import gps_coordinate
+import wildlife
+import nominatim
 
 def search_species(city):
     coordinate = gps(city)
@@ -60,9 +60,6 @@ def display_species(species_list):
         pest_status = species["Species"].get("PestStatus", "Unknown")
         print(f"Species: {common_name}, Pest Status: {pest_status}")
 
-def search_sightings(taxon_id, city):
-    # Stub function
-    return [{"properties": {"StartDate": "1999-11-15", "LocalityDetails": "Tinaroo"}}]
 def display_sightings(sightings):
     for sighting in sightings:
         date = sighting["properties"].get("StartDate", "Unknown Date")
@@ -74,6 +71,47 @@ def filter_venomous(species_list):
 
 def gps(city):
     return gps_coordinate(city)
+
+# Functions for Task 9 - Retrieving sightings
+
+def search_sightings(taxonid, city) -> list:
+    """
+    Retrieves a list of animal sightings in a city for a given species (optional).
+
+    Args:
+        taxonid (int): The taxon ID of the species to search for (optional).
+        city (str): The name of the city.
+
+    Returns:
+        list: A list of sighting dictionaries.
+    """
+    if not city:
+        print("Error: Please specify a city for searching sightings.")
+        return []
+
+    coordinate = nominatim.gps_coordinate(city)
+
+    surveys = wildlife.get_surveys_by_species(coordinate, RADIUS, taxonid)
+    filtered_surveys = [survey for survey in surveys if survey["SiteCode"] == "INCIDENTAL"]
+    return filtered_surveys
+    
+    
+def get_surveys_by_species(coordinate, radius, taxonid):
+    """
+    Retrieves a list of animal surveys in an area for a given species using the Queensland wildlife data API.
+
+    Args:
+            coordinate (dict): A dictionary containing latitude and longitude keys.
+            radius (int): The search radius in meters.
+            taxonid (int): The taxon ID of the species to search for.
+
+    Returns:
+            list: A list of survey dictionaries.
+    """
+    surveys = wildlife.get_surveys_by_species(coordinate, radius, taxonid)
+    filtered_surveys = [survey for survey in surveys if survey["SiteCode"] == "INCIDENTAL"]
+    return filtered_surveys
+
 
 if __name__ == "__main__":
     main()

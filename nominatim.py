@@ -1,6 +1,6 @@
 import requests
 
-def gps_coordinate(city):
+def gps_coordinate(city) -> dict:
     url = f"https://nominatim.openstreetmap.org/search?q={city}&format=json"
     response = requests.get(url)
     if response.status_code == 200:
@@ -9,7 +9,7 @@ def gps_coordinate(city):
             latitude = float(data[0]['lat'])
             longitude = float(data[0]['lon'])
             return {"latitude": latitude, "longitude": longitude}
-    return {"latitude": -27.4689682, "longitude": 153.0234991}
+    return {"latitude": -27.4689682, "longitude": 153.0234991} #Default coordinates for Brisbane
 
 if __name__ == "__main__":
     # Testing the gps_coordinate function
