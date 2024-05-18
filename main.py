@@ -131,6 +131,7 @@ def test_gps():
 
 def search_sightings(taxonid, city) -> list:
     """
+
     Retrieves a list of animal sightings in a city for a given species (optional).
 
     Args:
