@@ -97,7 +97,9 @@ def display_species(species_list):
         print(f"Species: {common_name}, Pest Status: {pest_status}")
 
 def display_sightings(sightings):
-    for sighting in sightings:
+    # Sort sightings by date first
+    sorted_sightings = sort_by_date(sightings)
+    for sighting in sorted_sightings:
         date = sighting["properties"].get("StartDate", "Unknown Date")
         location = sighting["properties"].get("LocalityDetails", "Unknown Location")
         print(f"Sighting Date: {date}, Location: {location}")
@@ -158,6 +160,61 @@ def search_sightings(taxonid, city) -> list:
     '''This line of code is creating a new list that contains only the surveys where the "SiteCode" is "INCIDENTAL". by using a list comprehension'''
     filtered_surveys = [survey for survey in surveys if survey["properties"]["SiteCode"] == "INCIDENTAL"]
     return filtered_surveys
+
+#task 10 - earliest sighting
+def earliest(sightings) -> dict:
+  """
+  Returns the sighting with the earliest start date from a list of sightings.
+
+  Args:
+      sightings (list): A list of sighting dictionaries.
+
+  Returns:
+      dict: The sighting dictionary with the earliest start date, or None if no sightings.
+  """
+  if not sightings:
+    return None
+  earliest_sighting = sightings[0]
+  for sighting in sightings:
+    # Extract date strings
+    current_date = sighting["properties"].get("StartDate", "")
+    previous_date = earliest_sighting["properties"].get("StartDate", "")
+    # Compare dates (assuming 'YYYY-MM-DD' format)
+    if current_date < previous_date:
+      earliest_sighting = sighting
+  return earliest_sighting
+
+def sort_by_date(sightings):
+  """
+  Sorts a list of sightings by their start dates in ascending order.
+
+  Args:
+      sightings (list): A list of sighting dictionaries.
+
+  Returns:
+      list: A new list of sightings sorted by earliest start date first.
+  """
+  # Use built-in sorted function with a custom key
+  return sorted(sightings, key=lambda sighting: sighting["properties"].get("StartDate", ""))
+
+def test_earliest():
+    # Test case with no sightings
+    assert earliest([]) == None
+
+    # Test case with one sighting
+    sighting = {"properties": {"StartDate": "2021-01-01"}}
+    assert earliest([sighting]) == sighting
+
+    # Test case with multiple sightings
+    sightings = [
+        {"properties": {"StartDate": "2021-01-03"}},
+        {"properties": {"StartDate": "2021-01-01"}},
+        {"properties": {"StartDate": "2021-01-02"}},
+    ]
+    assert earliest(sightings) == sightings[1]
+
+    print("Earliest sighting test passed.")
+
 
 if __name__ == "__main__":
     main()
