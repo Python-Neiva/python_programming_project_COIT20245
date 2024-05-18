@@ -46,7 +46,8 @@ def main():
                 print("Invalid command. Please try again.")
         else:
             print("Invalid command. Please try again.")
-from wildfile import get_species_list
+from wildlife import get_species_list
+from nominatim import gps_coordinate
 
 def search_species(city):
     coordinate = gps(city)
@@ -62,7 +63,6 @@ def display_species(species_list):
 def search_sightings(taxon_id, city):
     # Stub function
     return [{"properties": {"StartDate": "1999-11-15", "LocalityDetails": "Tinaroo"}}]
-
 def display_sightings(sightings):
     for sighting in sightings:
         date = sighting["properties"].get("StartDate", "Unknown Date")
@@ -71,7 +71,7 @@ def display_sightings(sightings):
 
 def filter_venomous(species_list):
     return [species for species in species_list if species["Species"].get("PestStatus") == "Venomous"]
-from nomination import gps_coordinate
+
 def gps(city):
     return gps_coordinate(city)
 
