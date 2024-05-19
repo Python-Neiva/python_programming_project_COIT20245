@@ -92,21 +92,21 @@ def search_species(city):
 
 def display_species(species_list):
     for species in species_list:
-        common_name = species["Species"].get("AcceptedCommonName", "Unknown")
-        pest_status = species["Species"].get("PestStatus", "Unknown")
+        common_name = species["Species"]["AcceptedCommonName"]
+        pest_status = species["Species"]["PestStatus"]
         print(f"Species: {common_name}, Pest Status: {pest_status}")
-        
+
 
 def display_sightings(sightings):
     # Sort sightings by date first
     sorted_sightings = sort_by_date(sightings)
     for sighting in sorted_sightings:
-        date = sighting["properties"].get("StartDate", "Unknown Date")
-        location = sighting["properties"].get("LocalityDetails", "Unknown Location")
+        date = sighting["properties"]["StartDate"]
+        location = sighting["properties"]["LocalityDetails"]
         print(f"Sighting Date: {date}, Location: {location}")
 
 def filter_venomous(species_list):
-    return [species for species in species_list if species["Species"].get("PestStatus") == "Venomous"]
+    return [species for species in species_list if species["Species"]["PestStatus"] == "Venomous"]
 
 # Assert function for filter_venomous
 def test_filter_venomous():
