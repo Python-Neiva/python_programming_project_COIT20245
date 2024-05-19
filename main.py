@@ -95,6 +95,7 @@ def display_species(species_list):
         common_name = species["Species"].get("AcceptedCommonName", "Unknown")
         pest_status = species["Species"].get("PestStatus", "Unknown")
         print(f"Species: {common_name}, Pest Status: {pest_status}")
+        
 
 def display_sightings(sightings):
     # Sort sightings by date first
