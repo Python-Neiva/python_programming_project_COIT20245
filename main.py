@@ -37,7 +37,12 @@ def display_menu():
     rightAlignment = "wildlife> species <city> venomous"
     print(f"{leftAlignment : <35}{ rightAlignment : >55}")
 
-    
+# def search_species(city):
+#     # Stub implementation
+#     return [
+#         {"Species": {"AcceptedCommonName": "dolphin", "PestStatus": "Nil"}},
+#         {"Species": {"AcceptedCommonName": "snake", "PestStatus": "Venomous"}}
+#     ]    
 def main():
     """
     Main function that runs the wildlife application.
