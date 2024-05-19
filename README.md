@@ -5,7 +5,10 @@ Python repo
 - Parul: 12261175
 - Sebastian Romero:12242040
 
-Executive Summary
+Open a terminal or command prompt and navigate to the directory containing main.py. Then, type the following command and press Enter: python main.py
+
+
+# Executive Summary
 This document outlines the development of a Python program that retrieves and analyzes data about animal observations in Queensland, Australia. Users can interact with the program to find:
 
 Lists of species in a specified city
