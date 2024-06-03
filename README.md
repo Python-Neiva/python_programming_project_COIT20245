@@ -1,9 +1,9 @@
 # COIT20245_programming_project
 Python repo
 
-- Hamza Arif:12244212
-- Parul: 12261175
-- Sebastian Romero:12242040
+- Hamza Arif
+- Parul
+- Sebastian Romero
 
 Open a terminal or command prompt and navigate to the directory containing main.py. Then, type the following command and press Enter: python main.py
 
@@ -17,6 +17,9 @@ The program communicates with external web services:
 
 Nominatim geocoding service: Translates city names into GPS coordinates.
 Queensland Wildlife Data API: Provides information on species and sightings.
+
+# To run it:
+Run the main.py Python file in a console.
 
 ## Key functionalities implemented:
 
